@@ -1,50 +1,18 @@
-// config our evnviroment variables
-import "dotenv/config"
-
-// bring in express
 import express from "express";
+import dotenv from "dotenv";
 
-// create express app
-const app = express();
+import { searchMovies, getMovieDetails } from "./controllers/movieController.js";
 
-// bring in movie routes
-import movieRoutes from "./routes/movieRoutes.js"
-
-
-// create middleware
-function requestMovie(req, res, next) {
-    console.log (`${req.method} ${req.path} ${new movie()}`)
-    next()
-}
-
-function checkApiKey(req, res, next)
-
-if (req.)
-
-
-
-
-
-
-import controllers from "./controllers/movieController.js"
-
-
+dotenv.config();
 
 const app = express();
 
+const PORT = 3000;
 
+app.get("/api/search", searchMovies);
 
-import movieRoutes from "./routes/movieRoutes.js"
+app.get("/api/movies/:id", getMovieDetails);
 
-// app.get ('/api/movies/:id', (req, res) => {
-//     res.send("Hello World!!!!!!")
-// })
-
-
-// app.post ("/api/searchs", (req, res) => {
-//     res.send("Created Succesfully")
-// })
-
-app.listen(port, ()=> {
-    console.log("Server is listening on port :  "+ port )
-})
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
