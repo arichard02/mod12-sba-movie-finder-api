@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 
-import { searchMovies, getMovieDetails } from "./controllers/movieController.js";
+import movieRoutes  from "./routes/movieRoutes.js";
 
 dotenv.config();
 
@@ -9,10 +9,15 @@ const app = express();
 
 const PORT = 3000;
 
-app.get("/api/search", searchMovies);
+// middleware
+app.use(express.json());
 
-app.get("/api/movies/:id", getMovieDetails);
+app.get("/", (req, res) => {
+  res.send("Movie Finder Api is working")
+})
+app.use("/api", movieRoutes);
 
+// start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
